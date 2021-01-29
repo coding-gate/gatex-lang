@@ -4,7 +4,7 @@ name: maven build and docker image push
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
 
