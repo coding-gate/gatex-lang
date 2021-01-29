@@ -37,7 +37,7 @@ public class JavaServiceUnittest {
 		CmdOutput output=new CmdOutput();
 		output.setStatus(0);
 		Mockito.when(javaUtil.buildCompileString(any(String.class), any(String.class))).thenReturn(" ");
-		Mockito.when(javaHelper.compile(any(String.class))).thenReturn(output);
+		Mockito.when(javaHelper.compile(any(String.class),any(String.class))).thenReturn(output);
 		CmdOutput result = javaService.compileAns(new AnswerDTO());
 		assertEquals(new Long(0), new Long(result.getStatus()));
 	}
@@ -49,7 +49,7 @@ public class JavaServiceUnittest {
 		Mockito.when(javaUtil.buildCompileString(any(String.class), any(String.class))).thenReturn(" ");
 		Mockito.when(javaUtil.buildRunString(any(String.class), any(String.class))).thenReturn(" ");
 		Mockito.when(javaHelper.execCommand(any(String.class))).thenReturn(output);
-		Mockito.when(javaHelper.compile(any(String.class))).thenReturn(output);
+		Mockito.when(javaHelper.compile(any(String.class), any(String.class))).thenReturn(output);
 		UnitTestAndAnswerDTO unitTestAns=new UnitTestAndAnswerDTO();
 		CmdOutput result = javaService.runUnittest(unitTestAns);
 		assertEquals(new Long(0), new Long(result.getStatus()));
@@ -60,7 +60,7 @@ public class JavaServiceUnittest {
 		CmdOutput output=new CmdOutput();
 		output.setStatus(0);
 		Mockito.when(javaUtil.buildCompileString(any(String.class), any(String.class))).thenReturn(" ");
-		Mockito.when(javaHelper.compile(any(String.class))).thenReturn(output);
+		Mockito.when(javaHelper.compile(any(String.class), any(String.class))).thenReturn(output);
 		UnitTestAndAnswerDTO unitTestAns=new UnitTestAndAnswerDTO();
 		CmdOutput result = javaService.compileAll(unitTestAns);
 		assertEquals(new Long(0), new Long(result.getStatus()));

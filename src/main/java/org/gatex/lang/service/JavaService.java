@@ -44,7 +44,7 @@ public class JavaService {
             javaHelper.createDir(dirName);
             javaHelper.saveFile(dirName, ANSWER_FILE_NAME, ans.getAnswerCode());
             String cmd = javaUtil.buildCompileString(dirName, ANSWER_FILE_NAME);
-            output = javaHelper.compile(cmd);
+            output = javaHelper.compile(cmd, dirName);
 
         } finally {
             javaHelper.deleteDir(dirName);
@@ -73,11 +73,11 @@ public class JavaService {
         String cmd;
         javaHelper.saveFile(dirName, ANSWER_FILE_NAME, unitTestAns.getAnswerCode());
         cmd = javaUtil.buildCompileString(dirName, ANSWER_FILE_NAME);
-        output = javaHelper.compile(cmd);
+        output = javaHelper.compile(cmd, dirName);
         if (output.getStatus() == 0) {
             javaHelper.saveFile(dirName, UNIT_TEST_FILE_NAME, unitTestAns.getUnitTestCode());
             cmd = javaUtil.buildCompileString(dirName, UNIT_TEST_FILE_NAME);
-            output = javaHelper.compile(cmd);
+            output = javaHelper.compile(cmd, dirName);
         }
         return output;
     }

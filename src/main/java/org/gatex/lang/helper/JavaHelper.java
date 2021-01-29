@@ -23,7 +23,7 @@ public class JavaHelper extends UnittestHelper{
     }
 
 
-    public CmdOutput compile(String cmdString) throws IOException {
+    public CmdOutput compile(String cmdString, String dirName) throws IOException {
         Process process;
         InputStream in = null;
         CmdOutput cmdOutput = new CmdOutput();
@@ -33,7 +33,7 @@ public class JavaHelper extends UnittestHelper{
             process = osProcess.start(cmdString);
             in = process.getErrorStream();
             String progErrOut = getOutput(in);
-            String errorMsg = removeFilePathFromErrorMsg(progErrOut);
+            String errorMsg = removeFilePathFromErrorMsg(progErrOut, dirName);
             cmdOutput.setErrorMsg(errorMsg);
             int exitCode = process.waitFor();
             cmdOutput.setStatus(exitCode);
@@ -77,14 +77,12 @@ public class JavaHelper extends UnittestHelper{
     }
 
 
-    private String removeFilePathFromErrorMsg(String progErrOut) {
+    private String removeFilePathFromErrorMsg(String progErrOut, String dirName) {
         String[] lines = progErrOut.split(System.lineSeparator());
         StringBuilder sb = new StringBuilder();
         for(String line:lines){
-            if(line.contains("Answer.java:")){
-                sb.append(line.substring(line.indexOf("Answer.java:")));
-            }else if(line.contains("UnitTest.java:")){
-                sb.append(line.substring(line.indexOf("UnitTest.java:")));
+            if(line.contains(dirName)){
+                sb.append(line.substring(line.indexOf(dirName)+dirName.length()+1));
             }else{
                 sb.append(line);
             }

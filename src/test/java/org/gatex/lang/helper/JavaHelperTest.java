@@ -67,7 +67,7 @@ public class JavaHelperTest {
 
         Mockito.when(osProcess.start(any(String.class))).thenReturn(process);
         Mockito.when(process.getErrorStream()).thenReturn(new ByteArrayInputStream(str.getBytes()));
-        CmdOutput output= javaHelper.compile("command");
+        CmdOutput output= javaHelper.compile("command", "9797440d-49fe-42aa-a872-f7acec330ac7");
 
         assertEquals(0, (int)output.getStatus());
 
