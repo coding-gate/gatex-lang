@@ -85,7 +85,8 @@ public class CsharpHelper extends UnittestHelper{
                 cmdOutput.setOutputMsg(formatUnittestMsg(progOut));
                 cmdOutput.setStatus(status);
             }else{
-                cmdOutput.setOutputMsg(formatCompilationMsg(progOut));
+                //cmdOutput.setOutputMsg(formatCompilationMsg(progOut));
+                cmdOutput.setErrorMsg(formatCompilationMsg(progOut));
                 cmdOutput.setStatus(1);
             }
             status = process.waitFor();
